@@ -1,0 +1,328 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap");
+* {
+  scroll-behavior: smooth;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden;
+}
+
+.section-1 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  min-height: 100vh;
+}
+
+.section-1 .columna1 {
+  width: 60vw;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 70px 1fr;
+      grid-template-rows: 70px 1fr;
+      background: rgb(193,245,137);
+      background: linear-gradient(180deg, rgba(193,245,137,1) 0%, rgba(197,255,135,1) 7%, rgba(138,205,66,1) 80%);
+  color: white;
+}
+#user{
+  border: none;
+  outline: none;
+  border-bottom: 2px solid #9AE44C;
+}
+#password{
+  border: none;
+  outline: none;
+  border-bottom: 2px solid #9AE44C;
+}
+
+.section-1 .columna1 header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  text-align: right;
+  background-color: #1a1c35;
+}
+
+.section-1 .columna1 header h2 {
+  width: 100%;
+  font-size: 25px;
+  font-weight: 400;
+  letter-spacing: 10px;
+  margin: 0 3em;
+}
+
+.section-1 .columna1 header p {
+  position: absolute;
+  left: 4em;
+  font-weight: 100;
+  font-size: small;
+}
+
+.section-1 .columna1 main {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.section-1 .columna1 main .texto {
+  width: 60%;
+  margin: 4em;
+}
+
+.section-1 .columna1 main .texto h1 {
+  font-size: 70px;
+  font-weight: 400;
+}
+
+.section-1 .columna1 main .texto p, .section-1 .columna1 main .texto a {
+  color: white;
+  text-decoration: underline;
+  letter-spacing: 3px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.section-1 .columna1 main .texto p img, .section-1 .columna1 main .texto a img {
+  width: 30px;
+  height: 30px;
+  margin: 5px 10px;
+  -webkit-transform: translateY(40px);
+          transform: translateY(40px);
+}
+
+.section-1 .columna1 main .texto a {
+  height: 100px;
+}
+
+.section-1 .columna1 main .imagen {
+  width: 50%;
+  margin: 4em;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+}
+
+.section-1 .columna1 main .imagen img {
+  width: 300px;
+  height: 300px;
+}
+
+.section-1 .columna1 .main-registro {
+  background-color: white;
+}
+
+.section-1 .columna2 {
+  width: 40vw;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 70px 1fr;
+      grid-template-rows: 70px 1fr;
+}
+
+.section-1 .columna2 header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin: 0 8em;
+}
+
+.section-1 .columna2 header img {
+  width: 30px;
+  height: 30px;
+}
+
+.section-1 .columna2 header a {
+  color: black;
+}
+
+.section-1 .columna2 main {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 100px 1fr;
+      grid-template-rows: 100px 1fr;
+  margin-top: 50px;
+}
+
+.section-1 .columna2 main h2 {
+  font-size: 25px;
+  font-weight: 400;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.section-1 .columna2 main form {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  -ms-grid-rows: 100px 100px 50px 50px;
+      grid-template-rows: 100px 100px 50px 50px;
+  margin: 30px;
+}
+
+.section-1 .columna2 main form input {
+  margin: 20px 0;
+  height: 40px;
+  width: 90%;
+  font-size: 18px;
+  font-weight: 100;
+  letter-spacing: 2px;
+}
+
+.section-1 .columna2 main form #btn {
+  width: 50%;
+  background-color: #9AE44C;
+  border-radius: 10px;
+  border: none;
+  color: white;
+  font-weight: 300;
+  cursor: pointer;
+}
+
+.section-2 {
+  width: 100vw;
+}
+
+.section-2 .contenedor {
+  margin: 4em 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.section-2 .contenedor .grafica-1 {
+  width: 90%;
+  height: 400px;
+}
+
+.section-2 .pie {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.section-2 .pie .grafica-pie {
+  width: 33%;
+  height: 400px;
+}
+
+.section-2 .pie .titulo-pie {
+  margin-left: 4em;
+}
+
+.section-3 {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.section-3 .columna1 {
+  width: 70%;
+}
+
+.section-3 .columna1 footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  text-align: right;
+  background-color: #C1F589;
+  color: white;
+  height: 70px;
+}
+
+.section-3 .columna1 footer h2 {
+  font-size: 25px;
+  font-weight: 400;
+  letter-spacing: 10px;
+  margin: 0 3em;
+}
+
+.section-3 .columna1 footer p {
+  font-size: 12px;
+  font-weight: 200;
+  margin: 0 4em;
+}
+
+.section-3 .columna2 {
+  width: 30%;
+}
+
+.section-3 .columna2 footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  height: 70px;
+}
+
+.section-3 .columna2 footer a {
+  color: black;
+}
+
+.section-3 .columna2 footer a img {
+  width: 30px;
+  height: 30px;
+  margin: 0 4em;
+}
+
+@media only screen and (min-width: 1578px) {
+  .columna1 {
+    width: 75%;
+  }
+  .columna1 main .texto {
+    margin-left: 4em;
+  }
+  .columna1 main .texto h1 {
+    font-size: 70px;
+  }
+  .columna1 main .texto p, .columna1 main .texto a {
+    font-size: 20px;
+    font-weight: 300;
+  }
+  .columna1 main .imagen img {
+    width: 500px;
+    height: 500px;
+  }
+  .columna2 {
+    width: 25%;
+  }
+}
+/*# sourceMappingURL=main.css.map */

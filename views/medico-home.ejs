@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de gestion COVID-19 | asistente - registrar casos</title>
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css'
+        rel='stylesheet' />
+    <link rel="stylesheet" href="/css/asistente-home.css">
+</head>
+
+<body>
+    <section class="columna-1">
+        <header>
+            <p>Médico</p>
+            <h2>Sistema de gestion COVID-19</h2>
+        </header>
+        <main>
+            <div class="mapa-general" id="mapaGeneral">
+                <input type="text" name="negativos" id="negativos" value="<%= casosN %>">     
+                <input type="text" name="tratamiento" id="tratamiento" value="<%= casosT %>">
+                <input type="text" name="uci" id="uci" value="<%= casosU %>">
+                <input type="text" name="curadosp" id="curadosp" value="<%= casosC %>">
+                <input type="text" name="muertos" id="muertos" value="<%= casosM %>">
+            </div>
+        </main>
+    </section>
+    <section class="columna-2">
+        <header>
+            <a href="/logout">LOG OUT</a>
+        </header>
+        <main>
+            <h3>Casos Registrados</h3>
+            <p>Buscar por (selecciona solo una opción):</p>
+            <form action="/buscar-casos-m" method="post">
+                <div class="buscador">
+                    <select name="filtro" id="filtro">
+                        <option value="id">ID (ej. 12)</option>
+                        <option value="nombre">Nombre (ej. Juanita Einstein)</option>
+                        <option value="cedula">Cédula (ej. 1234567890)</option>
+                    </select>
+                    <input type="text" name="data" id="data" required>
+                    <input type="submit" value="BUSCAR">
+                </div>
+            </form>
+            <%= alert %>
+                <div class="lista-usuarios">
+                    <table>
+                        <tr>
+                            <th>Gestionar</th>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Cedula</th>
+                        </tr>
+                        <tr>
+                            <% for(var i=0; i < data.length; i++){ %>
+                        <tr>
+                            <td>
+                                <form action="/medico-revision" method="post" style="padding: 0;">
+                                    <input type="number" name="id" value="<%= data[i].idCaso%>" style="display: none;">
+                                    <input type="submit" value='go'>
+                                </form>
+                            </td>
+                            <td>
+                                <%= data[i].idCaso%>
+                            </td>
+                            <td>
+                                <%= data[i].Nombre +" "+ data[i].Apellido %></td>
+                            <td><%= data[i].Cedula %></td>
+                        </tr>
+                    <% } %>
+                </tr>
+            </table>
+            </div>
+            <form action=" /lista-m" method="post">
+                <input type="submit" value="VER TODOS">
+            </form>
+        </main>
+    </section>
+</body>
+
+<script type="text/javascript" src="scripts/mapaGeneral.js"></script>
+
+</html>

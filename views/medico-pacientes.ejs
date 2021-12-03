@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de gestion COVID-19 | médico - revisar pacientes</title>
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css'
+        rel='stylesheet' />
+    <link rel="stylesheet" href="/css/asistente-home.css">
+</head>
+
+<body>
+    <section class="columna-1">
+        <header>
+            <p>Médico</p>
+            <h2>Sistema de gestion COVID-19</h2>
+        </header>
+        <main>
+            <h2>Información general del paciente</h2>
+            <div class="info">
+                <div class="detalles" style="display: flex;">
+                    <h4 style="padding-right: 20px; font-weight: 600;">ID caso:</h4>
+                    <p>
+                        <%= info.idCaso%>
+                    </p>
+                </div>
+                <div class="detalles" style="display: flex;">
+                    <h4 style="padding-right: 20px; font-weight: 600;">Nombre:</h4>
+                    <p>
+                        <%= info.Nombre + " " + info.Apellido%>
+                    </p>
+                </div>
+                <div class="detalles" style="display: flex;">
+                    <h4 style="padding-right: 20px; font-weight: 600;">Cédula:</h4>
+                    <p>
+                        <%= info.Cedula %>
+                    </p>
+                </div>
+                <div class="detalles" style="display: flex;">
+                    <h4 style="padding-right: 20px; font-weight: 600;">Sexo:</h4>
+                    <p>
+                        <%= info.Sexo %>
+                    </p>
+                </div>
+                <div class="detalles" style="display: flex;">
+                    <h4 style="padding-right: 20px; font-weight: 600;">Fecha de nacimiento:</h4>
+                    <p>
+                        <%= info.Nacimiento %>
+                    </p>
+                </div>
+                <div class="detalles" style="display: flex;">
+                    <h4 style="padding-right: 20px; font-weight: 600;">Resultado del exámen:</h4>
+                    <p>
+                        <%= info.Resultado %>
+                    </p>
+                </div>
+                <div class="detalles" style="display: flex;">
+                    <h4 style="padding-right: 20px; font-weight: 600;">Fecha del exámen:</h4>
+                    <p>
+                        <%= info.Examen %>
+                    </p>
+                </div>
+                <div class="detalles" style="display: flex;">
+                    <h4 style="padding-right: 20px; font-weight: 600;">Estado actual:</h4>
+                    <p>
+                        <%= info.Estado %>
+                    </p>
+                </div>
+                <div class="detalles" style="display: flex;">
+                    <h4 style="padding-right: 20px; font-weight: 600;">Modificado el:</h4>
+                    <p>
+                        <%= info.fechaEstado %>
+                    </p>
+                </div>
+            </div>
+            <div class="mapa-direcciones" id="direcciones">
+                <input type="text" name="residenciam" id="residenciam" value="<%= info.Residencia %>">
+                <input type="text" name="trabajom" id="trabajom" value="<%= info.Trabajo %>">
+            </div>
+        </main>
+        
+    </section>
+    <section class="columna-2">
+        <header>
+            <a href="/logout">LOG OUT</a>
+        </header>
+        <main>
+            <h3>Casos Registrados</h3>
+            <p>Buscar por (selecciona solo una opción):</p>
+            <form action="/buscar-casos-m-r" method="post">
+                <div class="buscador">
+                    <select name="filtro" id="filtro">
+                        <option value="id">ID (ej. 12)</option>
+                        <option value="nombre">Nombre (ej. Juanita Einstein)</option>
+                        <option value="cedula">Cédula (ej. 1234567890)</option>
+                    </select>
+                    <input type="text" name="data" id="data" required>
+                    <input type="submit" value="BUSCAR">
+                </div>
+            </form>
+            <%= alert %>
+                <div class="lista-usuarios">
+                    <table>
+                        <tr>
+                            <th>Gestionar</th>
+                            <th>ID</th>
+                            <th>Nombre</th>
+                            <th>Cedula</th>
+                        </tr>
+                        <tr>
+                            <% for(var i=0; i < data.length; i++){ %>
+                        <tr>
+                            <td>
+                                <form action="/medico-revision" method="post" style="padding: 0;">
+                                    <input type="number" name="id" value="<%= data[i].idCaso%>" style="display: none;">
+                                    <input type="submit" value='Ver caso'>
+                                </form>
+                            </td>
+                            <td>
+                                <%= data[i].idCaso%>
+                            </td>
+                            <td>
+                                <%= data[i].Nombre +" "+ data[i].Apellido %></td>
+                            <td><%= data[i].Cedula %></td>
+                        </tr>
+                    <% } %>
+                </tr>
+            </table>
+            </div>
+            <form action=" /medico-home" method="get">
+                <input type="submit" value="VER TODOS">
+            </form>
+            <a href="/medico-home" id="registrar-nuevo">
+                <p>Mapa general</p>
+            </a>
+        </main>
+    </section>
+</body>
+
+<script type="text/javascript" src="scripts/mapasMedico.js"></script>
+
+</html>

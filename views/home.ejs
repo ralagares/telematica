@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de gestion COVID-19</title>
+    <!-- Gráficas - Google Chart -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <link rel="stylesheet" href="/css/main.css">
+</head>
+<body>
+    <section class="section-1" id="section-1">
+        <div class="columna2">
+            <header>
+                <a href="admin-home" id="admin" style="width: 238px;">Ingresar como administrador</a>
+            </header>
+            <main>
+                <h2>Bienvenido</h2>
+                <form action="/usuarios" method='post'>
+                    <input type="text" id="user" name="user" placeholder="Usuario" required>
+                    <input type="password" id="password" name="password" placeholder="Contraseña" required>
+                    <%= errorInicio %>
+                    <input type="submit" id="btn" value="INGRESAR">
+                </form>
+            </main>
+        </div>
+        <div class="columna1">
+            <header>
+                <h2>Sistema de gestion COVID-19</h2>
+            </header>
+            <main>
+                <div class="texto">
+                    <h1>Coronavirus en Barranquilla</h1>
+                </div>
+            </main>
+        </div>
+        
+    </section>
+    <section class="section-2" id="section-2">
+        
+        <div class="pie">
+            <div class="grafica-pie" id="pie1">
+                <input type="text" name="infectados" id="infectados" value="<%= infectados %>">
+                <input type="text" name="muertes" id="muertes" value="<%= muertes %>">
+                <input type="text" name="curados" id="curados" value="<%= curados %>">
+            </div>
+
+            <div class="grafica-pie" id="pie2">
+                <input type="text" name="casa" id="casa" value="<%= casa %>">
+                <input type="text" name="hospital" id="hospital" value="<%= hospital %>">
+                <input type="text" name="uci" id="uci" value="<%= uci %>">
+            </div>
+
+            <div class="grafica-pie" id="pie3">
+                <input type="text" name="positivos" id="positivos" value="<%= positivos %>">
+                <input type="text" name="negativos" id="negativos" value="<%= negativos %>">
+            </div>
+        </div>
+        <div class="contenedor">
+            <div class="grafica-1" id="lineal">
+                <input type="text" name="casos" id="casos" value='<%= casos %>'>
+                <input type="text" name="muertesDias" id="muertesDias" value='<%= muertesDias %>'>
+            </div>
+        </div>
+    </section>
+</body>
+
+<script type="text/javascript" src="scripts/graficas.js"></script>
+<script type="text/javascript" src="scripts/graficaxy.js"></script>
+
+</html>

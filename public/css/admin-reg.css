@@ -1,0 +1,186 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap");
+* {
+  scroll-behavior: smooth;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  font-weight: 400;
+}
+
+body {
+  width: 100vw;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 60% 1fr;
+      grid-template-columns: 60% 1fr;
+      overflow-x: hidden;
+}
+
+.columna-1 {
+  height: 100vh;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 80px 1fr 40px;
+      grid-template-rows: 80px 1fr 40px;
+}
+
+.columna-1 header, .columna-1 footer {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0 80px;
+  background-color: #9AE44C;
+  color: white;
+}
+
+.columna-1 header h2, .columna-1 header p, .columna-1 footer h2, .columna-1 footer p {
+  font-weight: 100;
+  letter-spacing: 3px;
+}
+
+.columna-1 main {
+  padding: 20px 80px;
+}
+
+.columna-1 main h2 {
+  padding: 40px 0;
+  font-size: 30px;
+}
+
+.columna-1 main form {
+  padding: 20px 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.columna-1 main form .form-c1 {
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  -ms-grid-rows: 25% 25% 25% 25%;
+      grid-template-rows: 25% 25% 25% 25%;
+  width: 100%;
+}
+
+.columna-1 main form .form-c1 input {
+  margin: 40px 20px;
+  height: 30px;
+  width: 80%;
+  font-size: large;
+}
+
+.columna-1 main form .form-c1 .radio {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.columna-1 main form .form-c1 .radio label {
+  margin-left: 60px;
+  font-size: large;
+}
+
+.columna-1 main form .form-c1 .radio input {
+  width: auto;
+}
+
+.columna-1 main form .form-c1 #registrar-btn {
+  width: 120px;
+  height: 50px;
+  background-color: #9AE44C;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  font-size: large;
+}
+
+.columna-1 main form .form-c1 #registrar-btn:hover {
+  cursor: pointer;
+  -webkit-transform: scale(0.9);
+          transform: scale(0.9);
+}
+
+.columna-1 footer p {
+  font-size: small;
+}
+
+.columna-2 {
+  border-left: 1px solid black;
+  height: 100vh;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-rows: 80px 1fr;
+      grid-template-rows: 80px 1fr;
+}
+
+.columna-2 header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 20px 40px;
+  height: 50px;
+}
+
+.columna-2 header a {
+  color: black;
+  margin: 0 40px;
+}
+
+.columna-2 header img {
+  width: 40px;
+}
+
+.columna-2 main {
+  padding: 20px 40px;
+  height: 74vh;
+}
+
+.columna-2 main h3 {
+  padding: 20px 0;
+  font-size: 30px;
+}
+
+.columna-2 main form {
+  padding: 20px 40px;
+}
+
+.columna-2 main form .buscador {
+  padding: 20px 0;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 80% 1fr;
+      grid-template-columns: 80% 1fr;
+}
+
+.columna-2 main form .buscador #data {
+  margin: 0 10px;
+}
+
+.columna-2 main .lista-usuarios table {
+  width: 100%;
+}
+
+.columna-2 main .lista-usuarios table th {
+  font-weight: 400;
+  background-color: #9AE44C;
+  color: white;
+}
+/*# sourceMappingURL=admin-reg.css.map */

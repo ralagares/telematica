@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de gestion COVID-19 | administrador - registrar usuarios</title>
+    <link rel="stylesheet" href="css/admin-reg.css">
+</head>
+<body>
+    <section class="columna-1">
+        <header>
+            <p>Administrador</p>
+            <h2>Sistema de gestion COVID-19</h2>
+        </header>
+        <main>
+            <h2>Registrar usuario</h2>
+            <form action="/admin-reg" method='post'>
+                <div class="form-c1">
+                    <input type="text" id="nombre" name="nombre" placeholder="NOMBRE" required>
+                    <input type="text" id="apellido" name="apellido" placeholder="APELLIDO" required>
+                    <input type="number" id="cedula" name="cedula" placeholder="CÉDULA" required>
+                    <div class="radio">
+                        <select name="rol" id="rol">
+                            <option value="medico">Médico</option>
+                            <option value="asistente">Asistente</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-c1">
+                    <input type="text" id="usuario" name="usuario" placeholder="USUARIO" required>
+                    <input type="password" id="contrasena" name="contrasena" placeholder="CONTRASEÑA" required><br>
+                    <input type="submit" id="registrar-btn" value="REGISTRAR">
+                </div>
+            </form>
+        </main>
+    </section>
+    <section class="columna-2">
+        <header>
+            <a href="/logout">LOG OUT</a>
+        </header>
+        <main>
+            <h3>Usuarios Registrados</h3>
+            <p>Buscar por (selecciona solo una opción):</p>
+            <form action="/admin-usuarios-reg" method="post">
+                <div class="radio-btns">
+                    <select name="filtro" id="filtro">
+                        <option value="nombre">Nombre (ej. Juanita Einstein)</option>
+                        <option value="usuario">Usuario (ej. jEinstein)</option>
+                        <option value="cedula">Cédula (ej. 1234567890)</option>
+                    </select>            
+                </div>
+                <div class="buscador">
+                    <input type="text" name="data" id="data" required>
+                    <input type="submit" value="BUSCAR">
+                </div>
+            </form>
+            <div class="lista-usuarios" >
+                <%= alert %>
+                <table>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Cedula</th>
+                        <th>Rol</th>
+                        <th>Usuario</th>
+                    </tr>
+                    <tr>
+                    <% for(var i = 0; i < data.length; i++){ %>
+                        <tr>
+                            <td><%= data[i].Nombre%></td>
+                            <td><%= data[i].Cedula%></td>
+                            <td><%= data[i].Rol%></td>
+                            <td><%= data[i].User%></td>
+                        </tr>
+                    <% } %>
+                    </tr>
+                </table>
+                <form action="/admin-lista" method="post">
+                    <input type="submit" value="VER TODOS">
+                </form>
+            </div>
+        </main>
+    </section>
+</body>
+</html>

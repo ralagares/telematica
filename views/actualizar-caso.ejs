@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de gestion COVID-19 | asistente - actualizar estado</title>
+    <link rel="stylesheet" href="css/asistente-home.css">
+</head>
+<body>
+    <section class="columna-1">
+        <header>
+            <p>Asistente</p>
+            <h2>Sistema de gestion COVID-19</h2>
+        </header>
+        <main>
+            <h2>Actualizar caso</h2>
+            <h3>Información general del paciente</h3>
+            <form action="/registrar-caso" method='post'>
+                <div class="form-c1">
+                    <input type="text" id="nombre" name="nombre" placeholder="Nombre" required>
+                    <input type="text" id="apellido" name="apellido" placeholder="Apellido" required>
+                    <input type="number" id="cedula" name="cedula" placeholder="Cédula" required>
+                    <div class="radio">
+                        <label id="sexo">Sexo:</label>
+                        <label for="sexof">F</label>
+                        <input type="checkbox" id="sexof" name="sexof" checked>
+                        <label for="sexom">M</label>
+                        <input type="checkbox" id="sexom" name="sexom">
+                    </div>
+                    <div class="radio" id="res">
+                        <label for="resultado">¿Resultado positivo?</label>
+                        <input type="checkbox" id="resultado" name="resultado" checked>
+                    </div>
+                </div>
+                <div class="form-c1">
+                    <div class="calendar">
+                        <label for="nacimiento">Fecha de nacimiento</label>
+                        <input type="date" name="nacimiento" id="nacimiento">
+                    </div>
+                    <div class="calendar">
+                        <label for="examen">Fecha de examen</label>
+                        <input type="date" name="examen" id="examen">
+                    </div>
+                    <input type="text" name="residencia" id="residencia" placeholder="Dirección de residencia" required>
+                    <input type="text" name="trabajo" id="trabajo" placeholder="Dirección de trabajo" required>
+                    <div class="actualiza-estado">
+                        <label for="">Actualizar estado:</label>
+                        <div class="estados">
+                            <div class="check-estado">
+                                <label for="estado1">TH (hospital)</label>
+                                <input type="checkbox" name="estado1" id="estado1">
+                            </div>
+                            <div class="check-estado">
+                                <label for="estado2">TC (casa)</label>
+                                <input type="checkbox" name="estado2" id="estado2">
+                            </div>
+                            <div class="check-estado">
+                                <label for="estado3">M (muerto)</label>
+                                <input type="checkbox" name="estado3" id="estado3">
+                            </div>
+                            <div class="check-estado">
+                                <label for="estado4">C (curado)</label>
+                                <input type="checkbox" name="estado4" id="estado4">
+                            </div>
+                        </div>
+                    </div>
+                    <input type="submit" value="ACTUALIZAR" id="actualizar-btn">
+                </div>
+            </form>
+        </main>
+    </section>
+    <section class="columna-2">
+        <header>
+            <a href="/logout">Cerrar Sesion</a>
+        </header>
+        <main>
+            <h3>Casos Registrados</h3>
+            <p>Buscar por (selecciona solo una opción):</p>
+            <form action="/buscar-casos-g" method="post">
+                <div class="radio-btns">
+                    <input type="checkbox" name="selectorNombre" id="buscar-nombre">
+                    <label for="buscar-nombre">Nombre (ej. Juanita Einstein)</label><br>
+                    <input type="checkbox" name="selectorId" id="buscar-id">
+                    <label for="buscar-usuario">ID (ej. 13)</label><br>
+                    <input type="checkbox" name="selectorCedula" id="buscar-cedula">      
+                    <label for="buscar-cedula">Cédula (ej. 1234567890)</label>                 
+                </div>
+                <div class="buscador">
+                    <input type="text" name="data" id="data" required>
+                    <input type="submit" value="BUSCAR">
+                </div>
+            </form>
+            <%= alert %>
+            <div class="lista-usuarios" >
+                <table>
+                    <tr>
+                        <th>Gestionar</th>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Cedula</th>
+                    </tr>
+                    <tr>
+                        <% for(var i = 0; i < data.length; i++){ %>
+                            <tr>
+                                <td>
+                                    <form action="/asistente-gestion" method="post" style="padding: 0;">
+                                        <input type="number" name="id" value="<%= data[i].idCaso%>" style="display: none;">
+                                        <input type="submit" value='go' >
+                                    </form>
+                                </td>
+                                <td><%= data[i].idCaso%></td>
+                                <td><%= data[i].Nombre +" "+ data[i].Apellido %></td>
+                                <td><%= data[i].Cedula%></td>
+                            </tr>
+                        <% } %>
+                    </tr>
+                </table>
+                <form action="/lista-g" method="post">
+                    <input type="submit" value="VER TODOS">
+                </form>
+            </div>
+            <a href="/asistente-home" id="registrar-nuevo">
+                <p>Registrar nuevo caso</p>
+            </a>
+        </main>
+    </section>
+</body>
+</html>

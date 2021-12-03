@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de gestion COVID-19 | asistente - registrar casos</title>
+    <link rel="stylesheet" href="/css/asistente-home.css">
+    <!-- Leaflet -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
+    <link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css'
+        rel='stylesheet' />
+</head>
+<body>
+    <section class="columna-1">
+        <header>
+            <p>Asistente</p>
+            <h2>Sistema de gestion COVID-19</h2>
+        </header>
+        <main>
+            <h2>Gestionar caso</h2>
+            <h3>Información general del paciente</h3>
+            <div class="info">
+                <form action="/actualizar-info" method="post">
+                    <div class="detalles">
+                        <input type="text" name="id" id="id" value="<%= info.idCaso %>">
+                        <h4 style="padding-right: 20px; font-weight: 600;">Nombre:</h4>
+                        <input type="text" name="nombre" id="nombre" value='<%= info.Nombre %>'>
+                    </div>
+                    <div class="detalles">
+                        <h4 style="padding-right: 20px; font-weight: 600;">Apellido:</h4>
+                        <input type="text" name="apellido" id="apellido" value='<%= info.Apellido %>'>
+                    </div>
+                    <div class="detalles">
+                        <h4 style="padding-right: 20px; font-weight: 600;">Cédula:</h4>
+                        <input type="number" name="cedula" id="cedula" value="<%= info.Cedula %>">
+                    </div>
+                    <div class="detalles">
+                        <h4 style="padding-right: 20px; font-weight: 600;">Sexo:</h4>
+                        <p>(<%= info.Sexo %>)</p>
+                        <select name="sexo" id="sexo">
+                            <option value="Femenino">Femenino</option>
+                            <option value="Masculino">Masculino</option>
+                        </select>
+                    </div>
+                    <div class="detalles">
+                        <h4 style="padding-right: 20px; font-weight: 600;">Fecha de nacimiento:</h4>
+                        <input type="date" name="nacimiento" id="nacimiento" value="<%= info.Nacimiento %>">
+                    </div>
+                    <p>Seleccione la dirección de trabajo y residencia:</p>
+                    <div class="direcciones" id="direcciones">
+                        <input type="text" name="residencia" id="residencia" value="<%= info.Residencia %>">
+                        <input type="text" name="trabajo" id="trabajo" value="<%= info.Trabajo %>">
+                    </div>
+                    <div class="detalles">
+                        <h4 style="padding-right: 20px; font-weight: 600;">Fecha exámen:</h4>
+                        <input type="date" name="examen" id="examen" value="<%= info.Examen %>">
+                    </div>
+                    <div class="detalles">
+                        <h4 style="padding-right: 20px; font-weight: 600;">Resultado:</h4>
+                        <p>(<%= info.Resultado %>)</p>
+                        <select name="resultado" id="resultado">
+                            <option value="Positivo">Positivo</option>
+                            <option value="Negativo">Negativo</option>
+                        </select>
+                    </div>
+                    <div class="detalles">
+                        <h4 style="padding-right: 20px; font-weight: 600;">Nuevo estado:</h4>
+                        <select name="estado" id="estado">
+                            <option value="En tratamiento hospital">En tratamiento hospital</option>
+                            <option value="En tratamiento casa">En tratamiento casa</option>
+                            <option value="En tratamiento UCI">En tratamiento UCI</option>
+                            <option value="Curado">Curado</option>
+                            <option value="Muerte">Muerte</option>
+                        </select>
+                    </div>
+                    <input type="submit" value="ACTUALIZAR" id="btn">
+                    <script>
+                        var btn = document.getElementById('btn');
+                        console.log('<%= estados[estados.length-1].Estado %>');
+                        if ('<%= estados[estados.length-1].Estado %>' == 'Muerte') {
+                            btn.setAttribute('disabled','on')
+                        } else {
+                            btn.removeAttribute('disabled');
+                        }
+                    </script>
+                </form>
+            </div>
+            <h3>Seguimiento de estado</h3>
+            <div class="fechas" >
+                <table>
+                    <tr>
+                        <th>Fecha</th>
+                        <th>Estado</th>
+                    </tr>
+                    <tr>
+                        <% for(var i = 0; i < estados.length; i++){ %>
+                            <tr>
+                                <td><%= estados[i].fechaEstado %></td>
+                                <td><%= estados[i].Estado %></td>
+                            </tr>
+                        <% } %>
+                    </tr>
+                </table>
+            </div>
+        </main>
+    </section>
+    <section class="columna-2">
+        <header>
+            <a href="/logout">LOG OUT</a>
+        </header>
+        <main>
+            <h3>Casos Registrados</h3>
+            <p>Buscar por (selecciona solo una opción):</p>
+            <form action="/buscar-casos-g" method="post">                
+                <div class="buscador">
+                    <select name="filtro" id="filtro">
+                        <option value="id">ID (ej. 12)</option>
+                        <option value="nombre">Nombre (ej. Juanita Einstein)</option>
+                        <option value="cedula">Cédula (ej. 1234567890)</option>
+                    </select>      
+                    <input type="text" name="data" id="data" required>
+                    <input type="submit" value="BUSCAR">
+                </div>
+            </form>
+            <%= alert %>
+            <div class="lista-usuarios" >
+                <table>
+                    <tr>
+                        <th>Gestionar</th>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Cedula</th>
+                    </tr>
+                    <tr>
+                        <% for(var i = 0; i < data.length; i++){ %>
+                            <tr>
+                                <td>
+                                    <form action="/asistente-gestion" method="post" style="padding: 0;">
+                                        <input type="number" name="id" value="<%= data[i].idCaso%>" style="display: none;">
+                                        <input type="submit" value='Ver caso' >
+                                    </form>
+                                </td>
+                                <td><%= data[i].idCaso%></td>
+                                <td><%= data[i].Nombre +" "+ data[i].Apellido %></td>
+                                <td><%= data[i].Cedula%></td>
+                            </tr>
+                        <% } %>
+                    </tr>
+                </table>
+            </div>
+            <form action="/lista-g" method="post">
+                <input type="submit" value="VER TODOS">
+            </form>
+            <a href="/asistente-home" id="registrar-nuevo">
+                <p>Registrar nuevo caso</p>
+            </a>
+        </main>
+    </section>
+</body>
+
+<script type="text/javascript" src="scripts/mapas.js"></script>
+
+</html>
